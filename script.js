@@ -139,7 +139,7 @@ function addModifyItem() {
 
             totalItems[i][j + 3] = total;
             console.log("Updated total to", totalItems[i][j + 3]);
-            showItems()
+            showItems();
             newEntry = false;
           } else {
             newEntry = false;
@@ -199,7 +199,7 @@ function removeItem() {
     var c = a.concat(b);
     totalItems = c;
     console.log("Total items after deletion", totalItems);
-    showItems()
+    showItems();
   } else {
     console.log("Not found", delItem, "at any index");
     alertUser(7);
@@ -295,46 +295,58 @@ function showBill(a, b, c, d, e, f, g, h, i, j) {
     }
   }
 
-  var dTotalBill = document.createElement("p");
-  var dDiscPer = document.createElement("p");
-  var dDiscAmt = document.createElement("p");
-  var dBillAftDisc = document.createElement("p");
-  var dTaxPer = document.createElement("p");
-  var dTaxAmt = document.createElement("p");
-  var dBillAftTax = document.createElement("p");
-  var dTipPer = document.createElement("p");
-  var dTipAmt = document.createElement("p");
-  var dFinalBill = document.createElement("p");
+  if (totalItems.length != 0) {
+    var dTotalBill = document.createElement("p");
+    var dDiscPer = document.createElement("p");
+    var dDiscAmt = document.createElement("p");
+    var dBillAftDisc = document.createElement("p");
+    var dTaxPer = document.createElement("p");
+    var dTaxAmt = document.createElement("p");
+    var dBillAftTax = document.createElement("p");
+    var dTipPer = document.createElement("p");
+    var dTipAmt = document.createElement("p");
+    var dFinalBill = document.createElement("p");
 
-  dTotalBill.textContent = "Total Bill :" + a;
-  dDiscPer.textContent = "Discount Percent :" + b;
-  dDiscAmt.textContent = "Discount Amount :" + c;
-  dBillAftDisc.textContent = "Bill After Discount :" + d;
-  dTaxPer.textContent = "Tax Percent :" + e;
-  dTaxAmt.textContent = "Tax Amount :" + f;
-  dBillAftTax.textContent = "Bill After Tax :" + g;
-  dTipPer.textContent = "Tip Percent :" + h;
-  dTipAmt.textContent = "Tip Amount :" + i;
-  dFinalBill.textContent = "Final Bill :" + j;
+    dTotalBill.textContent = "Total Bill :" + a;
+    dDiscPer.textContent = "Discount Percent :" + b;
+    dDiscAmt.textContent = "Discount Amount :" + c;
+    dBillAftDisc.textContent = "Bill After Discount :" + d;
+    dTaxPer.textContent = "Tax Percent :" + e;
+    dTaxAmt.textContent = "Tax Amount :" + f;
+    dBillAftTax.textContent = "Bill After Tax :" + g;
+    dTipPer.textContent = "Tip Percent :" + h;
+    dTipAmt.textContent = "Tip Amount :" + i;
+    dFinalBill.textContent = "Final Bill :" + j;
 
-  billPanel.appendChild(dTotalBill);
-  billPanel.appendChild(dDiscPer);
-  billPanel.appendChild(dDiscAmt);
-  billPanel.appendChild(dBillAftDisc);
-  billPanel.appendChild(dTaxPer);
-  billPanel.appendChild(dTaxAmt);
-  billPanel.appendChild(dBillAftTax);
-  billPanel.appendChild(dTipPer);
-  billPanel.appendChild(dTipAmt);
-  billPanel.appendChild(dFinalBill);
+    billPanel.appendChild(dTotalBill);
+    billPanel.appendChild(dDiscPer);
+    billPanel.appendChild(dDiscAmt);
+    billPanel.appendChild(dBillAftDisc);
+    billPanel.appendChild(dTaxPer);
+    billPanel.appendChild(dTaxAmt);
+    billPanel.appendChild(dBillAftTax);
+    billPanel.appendChild(dTipPer);
+    billPanel.appendChild(dTipAmt);
+    billPanel.appendChild(dFinalBill);
+  }
+}
+
+function newBill() {
+  console.log("Resetting for a new bill");
+  totalItems = [];
+  console.log("Total items", totalItems);
+  console.log("Total items length", totalItems.length);
+  reset();
+  showItems();
+  showBill();
 }
 
 var addModify = document.getElementById("addModifyItem");
 var remove = document.getElementById("removeItem");
 var generate = document.getElementById("generate");
-var newBill = document.getElementById("newBill")
+var resetBill = document.getElementById("newBill");
 
 addModify.addEventListener("click", addModifyItem);
 remove.addEventListener("click", removeItem);
 generate.addEventListener("click", generateBill);
-newBill.addEventListener("click",newBill)
+resetBill.addEventListener("click", newBill);
